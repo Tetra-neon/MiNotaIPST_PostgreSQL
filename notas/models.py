@@ -61,7 +61,7 @@ class Asignatura(models.Model):
 
             predicciones.append({
                 'evaluacion': nota.nombre_evaluacion,
-                'nota_minima_sugerida': round(nota_estimacion, 2),
+                'nota_minima_sugerida': round(nota_estimacion, 1), #un decimal para la nota
             })
 
         # Si aún faltan evaluaciones que no están creadas en el sistema (sin registros)
