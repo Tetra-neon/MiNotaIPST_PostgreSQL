@@ -16,8 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('notas/', include('notas.urls')), #Linea agregada para la vista de prueba creada en notas/urls.py
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'), #El usuario se loguea y recibe su token de acceso
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), # Si el token se va a vencer, puede refrescarlo sin volver a iniciar sesión.
+
 ]
