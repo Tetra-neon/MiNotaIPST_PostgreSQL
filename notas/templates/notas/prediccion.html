@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Predicción de Notas - {{ asignatura.nombre_asignatura }}</title>
+</head>
+<body>
+    <h1>Predicción para la asignatura: {{ asignatura.nombre_asignatura }}</h1>
+
+    {% if predicciones %}
+        <h2>Notas Requeridas:</h2>
+        <ul>
+            {% for prediccion in predicciones %}
+                <li><strong>{{ prediccion.evaluacion }}:</strong> Nota mínima sugerida: {{ prediccion.nota_minima_sugerida }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay notas pendientes de predecir. ¡Felicidades!</p>
+    {% endif %}
+
+    <a href="/admin/">Volver al administrador</a>
+</body>
+</html>
