@@ -1,10 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
+Usuario = get_user_model()
 
 class Asignatura(models.Model):
     usuario = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='asignaturas', null=True, blank=True)
+        Usuario, on_delete=models.CASCADE, related_name='asignaturas', null=True, blank=True)
     nombre_asignatura = models.CharField(max_length=100)
     # Promedio necesario para eximirse (5.3 o 5.5)
     eximicion = models.FloatField(default=5.3)
@@ -27,7 +28,7 @@ class Asignatura(models.Model):
         nota_requerida = ((self.eximicion * 100) -
                           suma_peso_obtenido) / (100 - suma_porcentaje)
 
-        return round(nota_requerida, 2)
+        return round(nota_requerida, 1)
 
     def predecir_notas_faltantes(self):
         notas = self.notas.all()
