@@ -69,7 +69,7 @@ class Asignatura(models.Model):
         for i in range(evaluaciones_faltantes - len(notas_faltantes)):
             predicciones.append({
                 'evaluacion': f"Evaluación Pendiente {i + 1}",
-                'nota_minima_sugerida': round(nota_promedio_requerida, 2),
+                'nota_minima_sugerida': round(nota_promedio_requerida, 1),
             })
 
         return predicciones
